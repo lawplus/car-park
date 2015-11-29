@@ -27,10 +27,21 @@ public class CarParkLocationController {
 	private LocationService locationService;
 
 	@RequestMapping(value="/scan/{addr}/{parkNo}/{position}", method = RequestMethod.GET)
-	public String saveAndShare(Model model, HttpServletRequest request) {
+	public String saveAndShare(@PathVariable String addr, @PathVariable String parkNo, 
+			@PathVariable String position, Model model, HttpServletRequest request, HttpServletResponse response) throws IOException {
 		//System.err.println(request.getRequestURI() + request.getServletPath() + request.getPathInfo() + request.getRealPath("/"));
 		String saveParkUrl = request.getRequestURI().replaceFirst("scan", "save");
 		model.addAttribute("saveParkUrl", saveParkUrl);
+		
+		// add by chenrm @ 2015年11月29日下午10:25:33 | 一扫描就保存位置
+		String cookieId = locationService.save(addr, parkNo, position);
+		Cookie cookie = new Cookie("cookieId", cookieId);
+		cookie.setMaxAge(60*60*24*7);//保留7天
+		cookie.setPath("/");
+		response.setContentType("text/html; charset=utf-8");
+		response.addCookie(cookie);
+		response.getWriter().write(cookieId);
+		model.addAttribute("cookieId", cookieId);
 		
 		String checkParkUrl = request.getRequestURI().replaceFirst("scan", "check");
 		model.addAttribute("checkParkUrl", checkParkUrl);

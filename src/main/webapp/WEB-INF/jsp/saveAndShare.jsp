@@ -47,7 +47,7 @@
 <div class="container">
 	<!-- 这儿开始你的页面编辑	 ================================================== -->
 	<!-- Indicates a successful or positive action -->
-	<button type="button" class="btn btn-success btn-lg btn-block" id="savePark">点击保存我的停车位置</button>
+	<button type="button" class="btn btn-success btn-lg btn-block" id="savePark">保存我的停车位置中...</button>
 	<button type="button" class="btn btn-success btn-lg btn-block progress-bar-striped active" id="checkPark">查看我的停车位置  <img src="/image/load.gif" style="display:none;" alt="loading" id='load'/></button>
 	<button type="button" class="btn btn-success btn-lg btn-block" id="sharePark" disabled>分享我的停车位置</button>
 	
@@ -65,9 +65,10 @@
 	
 	<!-- 这儿开始写你的脚本  ====================================== -->
 	<script type="text/javascript">
-	function savePark() {
+	/*function savePark() {
 		$("#savePark").html("保存中...");
-		$.ajax({
+		saveParkCallback(${cookieId});
+		 $.ajax({
 		      type: "POST",	
 		      url: "${saveParkUrl}",
 		      error: function(jqXHR, textStatus ) {
@@ -76,15 +77,18 @@
 		      success: function(data){
 		    	  saveParkCallback(data);
 		      }
-		  });
-	}
+		  }); 
+	}*/
 	
 	function saveParkCallback(data) {
-		setTimeout('$("#savePark").html("保存您的停车位置成功")' , 800);
+		setTimeout('$("#savePark").html("保存您的停车位置成功");$("#savePark").attr("disabled", true);' , 800);
 		$("#sharePark").attr("disabled", false);
 		var shareUrl = $("#shareParkForm").attr("action");
 		$("#shareParkForm").attr("action", shareUrl + '?cookieId=' + data);
 	}
+	
+	saveParkCallback('${cookieId}');
+	
 	
 	 $('#savePark').click(function (e) {
 		 savePark();
