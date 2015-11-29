@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- refer to :  spring-boot-1.1.8.RELEASE.jar\org\springframework\boot\logging\logback
+E:\workspace\ESB\refactor\.m2\repository\org\springframework\boot\spring-boot -->
+<configuration>
+    <include resource="org/springframework/boot/logging/logback/basic.xml" />
+    
+    <!-- spring boot日志 -->
+    <property name="LOG_PATH" value="./logs/"/>  <!-- name 与 value 不要换行！！-->
+    <property name="LOG_FILE" value="${LOG_PATH}/carPark.log}"/>
+	<property name="FILE_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } [%t] --- %-40.40logger{39} : %m%n%wex"/>
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${LOG_FILE}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>${LOG_FILE}.%i</fileNamePattern>
+			<minIndex>1</minIndex>
+      		<maxIndex>2000</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy
+			class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>10MB</MaxFileSize>
+		</triggeringPolicy>
+	</appender>
+    
+    
+    <!-- 程序应用业务逻辑错误级别的日志 ！！！！！！！！！ -->
+    <property name="APP_ERR_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${PID:- } [%t] --- %-20.20logger{19} : %m%n%wex" /> 
+    
+   	<appender name="FILE_APP_ERR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${APP_ERR_PATTERN}</pattern>
+		</encoder>
+		<file>${LOG_PATH}/appErr.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+			<fileNamePattern>${LOG_PATH}/appErr.log.%i</fileNamePattern>
+			<minIndex>1</minIndex>
+      		<maxIndex>20</maxIndex>
+		</rollingPolicy>
+		<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+			<MaxFileSize>5MB</MaxFileSize>
+		</triggeringPolicy>
+	</appender>
+	
+	<root level="INFO">
+		<appender-ref ref="CONSOLE" />
+		<appender-ref ref="FILE" />
+	</root>
+	
+	<logger name="APP_ERR" additivity="false">
+  		<appender-ref ref="FILE_APP_ERR" /> 
+  	</logger>
+	
+</configuration>

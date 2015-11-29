@@ -1,0 +1,93 @@
+﻿/* GLOBAL STYLES
+-------------------------------------------------- */
+/* Padding below the footer and lighter body text */
+
+body {
+  padding-top: 50px;/* 给导航条的预留空间. */
+  padding-bottom: 40px;
+  color: #5a5a5a;
+  font-family: "Microsoft YaHei" ! important;
+}
+
+
+
+/* CUSTOMIZE THE NAVBAR
+-------------------------------------------------- */
+/*把导航条的brand字置中间 并高亮*/
+.navbar-brand {
+	position: absolute;
+    width: 100%;
+    left: 0;
+    text-align: center;
+    margin: auto;
+	/*color: #ff7f50;珊瑚色*/
+}
+
+
+
+
+
+/* CUSTOMIZE THE MAP COONTAINER
+-------------------------------------------------- */
+@media(max-width:767px){
+	.map-container {
+		/*width: 320px;*/
+		height: 250px;
+		border: 1px solid gray;
+	}
+}
+@media(min-width:768px){
+	.map-container {
+		/*width: 520px;*/
+		height: 300px;
+		border: 1px solid gray;
+	}
+}
+@media(min-width:992px){
+	.map-container {
+		/*width: 520px;*/
+		height: 360px;
+		border: 1px solid gray;
+	}
+}
+@media(min-width:1200px){
+	.map-container {
+		width: 820px;
+		height: 500px;
+		border: 1px solid gray;
+	}
+}
+
+
+/* MARKETING CONTENT
+-------------------------------------------------- */
+
+/* Pad the edges of the mobile views a bit */
+
+
+/* CUSTOMIZE THE GRID
+-------------------------------------------------- */
+
+
+/* 定制表格 样式
+-------------------------------------------------- */
+/*td {
+	text-align: right;
+}*/
+
+
+
+/* 定制图片详情的栅格系统 样式
+-------------------------------------------------- */
+[class*="col-"] {
+	padding: 8px;
+  /*padding-top: 1px;
+  padding-bottom: 1px;
+  padding-left: 1px;
+  padding-right: 1px;
+  margin: 0px;
+  /*background-color: #eee;
+  background-color: rgba(86,61,124,.15);
+  border: 1px solid #ddd;
+  border: 1px solid rgba(86,61,124,.2);*/
+}

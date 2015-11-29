@@ -1,0 +1,5 @@
+http://code.jquery.com/jquery-2.0.3.min.map
+
+
+http://jquerymobile.com/download-builder/
+* only select touch then download..

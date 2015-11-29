@@ -1,0 +1,36 @@
+﻿/* GLOBAL STYLES
+-------------------------------------------------- */
+/* 首选字体替换为微软雅黑，用英文写字体名称兼容性更好，在所有浏览器上都通用，而且兼容bootstrap2.xx版本与最新的bootstrap3版本。 */
+/* body,button,input,select,textarea,h1,h2,h3,h4,h5,h6 {
+	font-family: Microsoft YaHei, '宋体', Tahoma, Helvetica, Arial,
+		"\5b8b\4f53", sans-serif;
+} */
+/* 当td cell里面文字太长时，显示缩略 - ... 
+	将 字体大小由默认14px改小1 px;  */
+
+td {
+	max-width: 200px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	font-size: 12px;
+}
+/* 弹出窗口小icon的样式  */
+.glyphicon-new-window {
+	margin-right: 0.1px;
+	cursor: pointer;
+}
+
+/* 模态框的样式  */
+/* Source: http://snipplr.com/view/10979/css-cross-browser-word-wrap */
+.wordwrap { 
+   white-space: pre-wrap;      /* CSS3 */   
+   white-space: -moz-pre-wrap; /* Firefox */    
+   white-space: -pre-wrap;     /* Opera <7 */   
+   white-space: -o-pre-wrap;   /* Opera 7 */    
+   word-wrap: break-word;      /* IE */
+}
+
+.clearfix:after { content: ""; display: block; height: 0; overflow: hidden; clear: both; visibility: hidden; }
+.box_hide{ display: none; }
+.top_box{ height: auto; width: 100%; margin-right: auto; margin-left: auto; text-align: center; position: relative; }
